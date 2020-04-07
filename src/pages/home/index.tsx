@@ -4,7 +4,7 @@ import { Card, Col, Row } from 'antd';
 
 import styles from './index.css';
 import Domain from '@/pages/home/components/domain';
-import { router } from 'umi';
+import { history } from 'umi';
 
 class Home extends React.Component<any, any> {
   componentDidMount(): void {
@@ -33,7 +33,7 @@ class Home extends React.Component<any, any> {
         currentDomainName,
       }
     });
-    router.push('/learning');
+    history.push('/learning');
   };
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {

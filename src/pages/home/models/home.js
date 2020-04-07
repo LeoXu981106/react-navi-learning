@@ -1,5 +1,5 @@
 import { subjectAPI } from '../../../services/subject';
-import { router } from 'umi';
+import { history } from 'umi';
 
 export default {
   namespace: 'home',
@@ -21,7 +21,7 @@ export default {
         });
       } catch (e) {
         if (e.code === 401) {
-          router.push('/login');
+          history.push('/login');
         }
         console.log(e);
       }

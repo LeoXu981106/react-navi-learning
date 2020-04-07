@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
-import { router } from 'umi';
+import { history } from 'umi';
 import classnames from 'classnames';
 import {select} from 'd3';
 import TopicsTree from '@/pages/learning/components/topicsTree';
@@ -73,7 +73,7 @@ class Learning extends React.Component<any, any> {
 
   componentDidMount(): void {
     if (this.props.authToken === '') {
-      router.push('/login');
+      history.push('/login');
     } else {
       const {currentDomainName} = this.props;
       this.props.dispatch({

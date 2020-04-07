@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Checkbox, Form, Icon, Input, Button } from 'antd';
 import { loginAPI } from '@/services/login';
 import './index.css';
-import { router } from 'umi';
+import { history } from 'umi';
 
 class Login extends React.Component {
   handleSubmit = async (e: any) => {
@@ -47,7 +47,7 @@ class Login extends React.Component {
     console.log(this.props);
     if (this.props.auth) {
 
-      router.push('/home');
+      history.push('/home');
     }
   }
 
