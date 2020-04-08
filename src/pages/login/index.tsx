@@ -55,7 +55,15 @@ class Login extends React.Component {
   }
 
   componentDidMount(): void {
-    console.log(this.props);
+    if (sessionStorage.authToken) {
+      this.props.dispatch({
+        type: 'userData/updateAuthToken',
+        payload: {
+          authToken: sessionStorage.authToken,
+        },
+      });
+      history.push('/home');
+    }
   }
 
   render() {

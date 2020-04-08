@@ -1,0 +1,10 @@
+.tree-node-no-focus {
+    :global {
+        .ant-tree-switcher-noop {
+            visibility: hidden;
+        }
+        .ant-tree-switcher {
+            visibility: hidden;
+        }
+    }
+}

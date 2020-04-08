@@ -63,7 +63,7 @@ class Home extends React.Component<any, any> {
                   </Card>
                 </Col>
               )) :
-              <Domain clickDomainCard={(domainName: string) => this.handleDomainClick(domainName)} />
+              <Domain clickDomainCard={(domainName: string) => this.handleDomainClick(domainName === '数据结构' ? '数据结构(人工)' : domainName)} />
           }
         </Row>
       </div>

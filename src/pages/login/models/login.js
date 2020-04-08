@@ -63,6 +63,7 @@ export default {
       }), 'base64');
       try {
         const res = yield call(loginAPI.signIn, token, data);
+        sessionStorage.authToken = res.token;
         yield put({
           type: 'userData/updateAuthToken',
           payload: {

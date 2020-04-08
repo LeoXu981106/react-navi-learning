@@ -17,3 +17,37 @@
 .hidden {
   right: -100%;
 }
+
+.side-bar {
+  background-color: #fafafa;
+  height: calc(100vh - 56px);
+  position: fixed;
+  width: 240px;
+}
+
+.topics-tree {
+  margin-top: 80px;
+  background-color: #fafafa;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+}
+
+.learning-method {
+  position: absolute;
+  padding: 4px;
+}
+
+.learning-special {
+  margin-top: 120px;
+  max-height: calc(100vh - 176px);
+}
+
+.topics-header {
+  position: absolute;
+  top: 40px;
+  padding: 4px;
+}
+
+.topics-header-special {
+  top: 80px;
+}
