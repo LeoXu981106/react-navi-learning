@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Checkbox, Form, Icon, Input, Button } from 'antd';
 import { loginAPI } from '@/services/login';
-import './index.css';
+import styles from './index.scss';
 import { history } from 'umi';
 
 class Login extends React.Component {
@@ -56,32 +56,35 @@ class Login extends React.Component {
   }
 
   render() {
-    const {username, passwd, auth } = this.props;
-    console.log(auth);
+    const { username, passwd, auth } = this.props;
+    const img = require('../../assets/bgNow.jpg')
     return (
       <div>
-        <Input
-          prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          placeholder="Username"
-          value={username}
-          onChange={this.handleUsernameChange}
-        />
-        <Input
-          prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          type="password"
-          placeholder="Password"
-          value={passwd}
-          onChange={this.handlePasswdChange}
-        />
-        <Checkbox>Remember me</Checkbox>
-        <a className="login-form-forgot" href="">
-          Forgot password
+        <img className={styles.bg} src={img} />
+        <div className={styles.login}>
+          <Input
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="Username"
+            value={username}
+            onChange={this.handleUsernameChange}
+          />
+          <Input
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            type="password"
+            placeholder="Password"
+            value={passwd}
+            onChange={this.handlePasswdChange}
+          />
+          <Checkbox>Remember me</Checkbox>
+          <a className={styles.loginFormForgot} href="">
+            Forgot password
         </a>
-        <Button type="primary" className="login-form-button" onClick={this.handleClickSignIn}>
-          Log in
+          <Button type="primary" className={styles.loginFormButton} onClick={this.handleClickSignIn}>
+            Log in
         </Button>
         Or
         <a href="" onClick={this.handleClickSignUp}>register now!</a>
+        </div>
       </div>
     );
   }
@@ -89,7 +92,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state: any) {
   const { username, passwd } = state.login;
-  const {authToken: auth} = state.userData;
+  const { authToken: auth } = state.userData;
   return {
     username,
     passwd,
