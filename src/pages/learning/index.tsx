@@ -6,7 +6,8 @@ import {select} from 'd3';
 import TopicsTree from '@/pages/learning/components/topicsTree';
 import Forest from '@/pages/learning/components/forest';
 import * as styles from './index.css';
-import { Button, Icon } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import Leaf from '@/pages/learning/components/leaf/leaf';
 
 class Learning extends React.Component<any, any> {
@@ -55,11 +56,12 @@ class Learning extends React.Component<any, any> {
         </div>
         <div className={classnames(styles.detail, { [styles.hidden]: !showDetail, [styles.shown]: showDetail})}>
           <div style={{textAlign: 'right'}}>
-            <Icon type="close" onClick={
-              () => {
-                this.setState({showDetail: false});
-              }
-            }/>
+            <CloseOutlined
+              onClick={
+                () => {
+                  this.setState({showDetail: false});
+                }
+              } />
           </div>
           {
             assembles.map((assemble: { assembleId: number; assembleContent: string; assembleScratchTime: string; facetId: number; sourceId: number; domainId: number; type: string; }) => (

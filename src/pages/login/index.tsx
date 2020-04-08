@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Checkbox, Form, Icon, Input, Button } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Checkbox, Input, Button } from 'antd';
 import { loginAPI } from '@/services/login';
 import styles from './index.scss';
 import { history } from 'umi';
@@ -57,33 +60,38 @@ class Login extends React.Component {
 
   render() {
     const { username, passwd, auth } = this.props;
-    const img = require('../../assets/bgNow.jpg')
+    const img = require('../../assets/bgNow.jpg');
     return (
       <div>
         <img className={styles.bg} src={img} />
         <div className={styles.login}>
+          <div className={styles['login-title']}>
+            账号密码登录
+          </div>
           <Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Username"
+            prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="用户名"
             value={username}
             onChange={this.handleUsernameChange}
+            className={styles['login-input']}
           />
           <Input
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
-            placeholder="Password"
+            placeholder="密码"
             value={passwd}
             onChange={this.handlePasswdChange}
+            className={styles['login-input']}
           />
-          <Checkbox>Remember me</Checkbox>
-          <a className={styles.loginFormForgot} href="">
-            Forgot password
+          <Checkbox>记住我</Checkbox>
+          <a className={styles['login-form-forgot']} href="">
+            忘记密码
         </a>
-          <Button type="primary" className={styles.loginFormButton} onClick={this.handleClickSignIn}>
-            Log in
+          <Button type="primary" className={styles['login-form-button']} onClick={this.handleClickSignIn}>
+            登录
         </Button>
         Or
-        <a href="" onClick={this.handleClickSignUp}>register now!</a>
+        <a href="" className={styles['login-form-forgot']} onClick={this.handleClickSignUp}>注册</a>
         </div>
       </div>
     );
