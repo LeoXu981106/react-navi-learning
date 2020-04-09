@@ -72,7 +72,6 @@ class Learning extends React.Component<any, any> {
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     const { topicsTree, currentDomainName, assembles, learningMethod, topics, learningPath, learningTopicsTree } = this.props;
     const { showDetail, showOnlyPath } = this.state;
-    console.log(topicsTree, learningTopicsTree);
     return (
       <div >
         <div className={styles['side-bar']}>
@@ -122,7 +121,7 @@ class Learning extends React.Component<any, any> {
         <div style={{ marginLeft: 240, overflow: 'hidden', maxHeight: 'calc(100vh - 60px)' }}>
           {
             currentDomainName &&
-            <Forest currentDomainName={currentDomainName} clickTopic={this.handleClickTopic} clickFacet={this.handleClickFacet} />
+            <Forest currentDomainName={currentDomainName} learningPath={learningPath} clickTopic={this.handleClickTopic} clickFacet={this.handleClickFacet} />
           }
         </div>
         <div className={classnames(styles.detail, { [styles.hidden]: !showDetail, [styles.shown]: showDetail })}>

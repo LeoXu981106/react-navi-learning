@@ -18,6 +18,7 @@
     "dva": "^2.6.0-beta.6",
     "dva-logger": "^1.0.0",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "lodash": "^4.17.15",
     "node-rsa": "^1.0.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

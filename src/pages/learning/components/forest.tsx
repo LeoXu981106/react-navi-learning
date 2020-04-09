@@ -1,4 +1,5 @@
 import React from 'react';
+import {isEqual} from 'lodash';
 // @ts-ignore
 import {drawMap} from '../../../modules/topicDependenceVisualization';
 
@@ -23,14 +24,37 @@ class Forest extends React.Component<any, any> {
     );
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (isEqual(nextProps, this.props)) return false;
+    const {currentDomainName, clickTopic, clickFacet, learningPath} = nextProps;
+    if (currentDomainName) {
+      const treesvg = document.getElementById('tree');
+      const svg = document.getElementById('map');
+      emptyChildren(treesvg);
+      emptyChildren(svg);
+      drawMap(svg, treesvg, currentDomainName, learningPath, (topicId: number, topicName: string) => {clickTopic(topicName)}, clickFacet);
+    }
+    return false;
+  }
+
   componentDidMount(): void {
-    const {currentDomainName, clickTopic, clickFacet} = this.props;
+    const {currentDomainName, clickTopic, clickFacet, learningPath} = this.props;
     if (currentDomainName) {
       const treesvg = document.getElementById('tree');
 
       const svg = document.getElementById('map');
-      drawMap(svg, treesvg, currentDomainName, (topicId: number, topicName: string) => {clickTopic(topicName)}, clickFacet);
+      drawMap(svg, treesvg, currentDomainName, learningPath, (topicId: number, topicName: string) => {clickTopic(topicName)}, clickFacet);
     }
+  }
+
+
+}
+
+function emptyChildren(dom: HTMLElement | null): void {
+  if (!dom) return;
+  const children = dom.childNodes;
+  while (children.length > 0) {
+      dom.removeChild(children[0]);
   }
 }
 
