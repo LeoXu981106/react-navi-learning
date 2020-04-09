@@ -28,7 +28,7 @@
 .topics-tree {
   margin-top: 80px;
   background-color: #fafafa;
-  max-height: calc(100vh - 36px);
+  max-height: calc(100vh - 136px);
   overflow: auto;
 }
 
