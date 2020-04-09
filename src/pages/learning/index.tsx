@@ -70,7 +70,18 @@ class Learning extends React.Component<any, any> {
   };
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-    const { topicsTree, currentDomainName, assembles, learningMethod, topics, learningPath, learningTopicsTree } = this.props;
+    const {
+      topicsTree,
+      currentDomainName,
+      assembles,
+      learningMethod,
+      topics,
+      learningPath,
+      learningTopicsTree,
+      currentTopicName,
+      currentFirstFacetName,
+      currentSecondFacetName
+    } = this.props;
     const { showDetail, showOnlyPath } = this.state;
     return (
       <div >
@@ -102,7 +113,7 @@ class Learning extends React.Component<any, any> {
             }
           </div>
           <div className={classnames(styles['topics-header'], { [styles['topics-header-special']]: learningMethod === 'special' })}>
-            <span style={{ padding: '0 8px', fontWeight: 600, fontSize: 16}}>知识点列表</span>
+            <span style={{ padding: '0 8px', fontWeight: 600, fontSize: 16 }}>知识点列表</span>
             {
               learningPath.length !== 0
               &&
@@ -125,19 +136,27 @@ class Learning extends React.Component<any, any> {
           }
         </div>
         <div className={classnames(styles.detail, { [styles.hidden]: !showDetail, [styles.shown]: showDetail })}>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ position: 'absolute', top: 0, padding: 4, width: '100%', backgroundColor: '#fafafa', borderBottom: '1px solid #d9d9d9' }}>
+            <span style={{fontSize: 16, fontWeight: 600}}>
+              {currentTopicName}-{currentFirstFacetName}{
+                currentSecondFacetName && '-' + currentSecondFacetName
+              }
+            </span>
             <CloseOutlined
+              style={{ position: 'absolute', right: 10, top: 10}}
               onClick={
                 () => {
                   this.setState({ showDetail: false });
                 }
               } />
           </div>
-          {
-            assembles.map((assemble: { assembleId: number; assembleContent: string; assembleScratchTime: string; facetId: number; sourceId: number; domainId: number; type: string; }) => (
-              <Leaf assemble={assemble} key={assemble.assembleId} />
-            ))
-          }
+          <div style={{marginTop: 32, padding: 16}}>
+            {
+              assembles.map((assemble: { assembleId: number; assembleContent: string; assembleScratchTime: string; facetId: number; sourceId: number; domainId: number; type: string; }) => (
+                <Leaf assemble={assemble} key={assemble.assembleId} />
+              ))
+            }
+          </div>
         </div>
       </div>
     );
@@ -160,7 +179,13 @@ class Learning extends React.Component<any, any> {
 
 function mapPropsToState(state: any) {
   const { authToken } = state.userData;
-  const { currentDomainName, assembles } = state.globalData;
+  const {
+    currentDomainName,
+    assembles,
+    currentTopicName,
+    currentFirstFacetName,
+    currentSecondFacetName
+  } = state.globalData;
   const { topicsTree, learningMethod, topics, learningPath, learningTopicsTree } = state.learning;
   return {
     topics,
@@ -170,7 +195,10 @@ function mapPropsToState(state: any) {
     assembles,
     learningMethod,
     learningPath,
-    learningTopicsTree
+    learningTopicsTree,
+    currentTopicName,
+    currentFirstFacetName,
+    currentSecondFacetName
   };
 }
 
